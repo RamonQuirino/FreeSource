@@ -1,0 +1,13 @@
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\FreeSource.Domain.dll
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\FreeSource.Domain.pdb
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\FreeSource.Common.dll
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\FreeSource.Common.pdb
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\obj\Debug\FreeSource.Domain.csprojResolveAssemblyReference.cache
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\obj\Debug\FreeSource.Domain.dll
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\obj\Debug\FreeSource.Domain.pdb
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\EntityFramework.dll
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\FreeSource.Common.dll.config
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Dados\workspace\FreeSource\FreeSource\FreeSource.Domain\bin\Debug\EntityFramework.xml
