@@ -1,0 +1,23 @@
+﻿@model FreeSource.Portal.ViewModels.AbstractViewModel
+
+<div class="row">    
+
+    <div class="col-sm-12">
+
+        <div class="alert alert-block alert-warning">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading">Atenção!</h4>
+            @if (Model.Errors != null)
+            {
+                foreach (var erro in Model.Errors)
+                {
+                    <p>@erro</p>
+                }
+            }
+            else
+            {
+                <p>Está não foi carregada corretamente, Tente novamente mais tarde</p>
+            }
+        </div>
+    </div>
+</div>

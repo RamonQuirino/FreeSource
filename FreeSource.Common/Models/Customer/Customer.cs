@@ -5,8 +5,8 @@ namespace FreeSource.Common.Models.Customer
 {
     public class Customer
     {
-        public int Id { get; set; }
-        public Person.Person Person { get; set; }
-        public IList<Person.Person> Persons { get; set; }
+        public virtual int Id { get; set; }
+        public virtual Person.Person Person { get; set; }
+        public virtual ICollection<Person.Person> Persons { get; set; }
     }
 }

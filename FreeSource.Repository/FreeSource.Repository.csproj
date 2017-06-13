@@ -55,9 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractRepository.cs" />
     <Compile Include="Authorization\UserRepository.cs" />
     <Compile Include="Context\FreeSourceModel.cs" />
     <Compile Include="Migration\Configuration.cs" />
+    <Compile Include="Person\PersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,8 +2,8 @@
 {
     public class ContactType
     {
-        public int Id { get; set; }
-        public string Description { get; set; }
-        public bool Active { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Description { get; set; }
+        public virtual bool Active { get; set; }        
     }
 }

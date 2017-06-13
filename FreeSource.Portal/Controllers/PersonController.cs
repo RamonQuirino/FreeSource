@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using FreeSource.Portal.ViewModels.Person;
 
 namespace FreeSource.Portal.Controllers
 {
@@ -8,7 +9,8 @@ namespace FreeSource.Portal.Controllers
         // GET: Person
         public ActionResult Index()
         {
-            return View();
+            var model = new PersonViewModel();
+            return View(model);
         }
     }
 }

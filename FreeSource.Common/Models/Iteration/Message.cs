@@ -4,11 +4,11 @@ namespace FreeSource.Common.Models.Iteration
 {
     public class Message
     {
-        public int Id { get; set; }
-        public DateTime Sended { get; set; }
-        public DateTime Readed { get; set; }
-        public Person.Person Sender { get; set; }
-        public Person.Person Recipient { get; set; }
-        public string Text { get; set; }
+        public virtual int Id { get; set; }
+        public virtual DateTime Sended { get; set; }
+        public virtual DateTime Readed { get; set; }
+        public virtual Person.Person Sender { get; set; }
+        public virtual Person.Person Recipient { get; set; }
+        public virtual string Text { get; set; }
     }
 }

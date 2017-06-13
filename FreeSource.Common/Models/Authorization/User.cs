@@ -6,7 +6,7 @@ namespace FreeSource.Common.Models.Authorization
 {    
     public class User: IdentityUser
     {                
-        public Person.Person Person { get; set; }
+        public virtual Person.Person Person { get; set; }
         public List<string> Errors { get; set; }
     }
     public class AccountLoginModel

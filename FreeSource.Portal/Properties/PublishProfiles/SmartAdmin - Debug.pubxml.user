@@ -6,6 +6,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>E:\Projects\SmartAdmin\PUBLISH</_PublishTargetUrl>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYiP17v0iu0a3hTPBnXAaygAAAAACAAAAAAAQZgAAAAEAACAAAABCwJOrPtuVEZbxQSe2thAQPHwGjc0MnmpDG+FgpwxV6AAAAAAOgAAAAAIAACAAAAD8pvDOTQPtwYXQ/1+1bPttiJD9wdU7tMakVGwKTHwL3FAAAABWVcfXjvTpbI28cv07HWi+6s2t+vTs+EJ7UWpNvdtBN9Alh8RmepDf5WXSQyNHu85cCIkbJXtTFIbshzkJUO616rhVnGxVGiBFPj/nQpl2cEAAAADzKdcJforLYa4/L5D6XBD0ciOW+azMzcBgmjGDnmIw/kRDvbWjuBVBlACwaFCXtFbCg7OWomBhCxR5eisjIl85</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Landing/Content/color/default.css">

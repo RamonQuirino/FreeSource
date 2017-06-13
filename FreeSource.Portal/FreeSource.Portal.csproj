@@ -604,6 +604,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1095,6 +1096,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AbstractViewModel.cs" />
     <Compile Include="ViewModels\Customer\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Person\PersonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

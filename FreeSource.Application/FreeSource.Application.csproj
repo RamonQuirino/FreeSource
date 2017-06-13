@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Authorization\AuthorizationApplication.cs" />
     <Compile Include="Authorization\UserApplication.cs" />
+    <Compile Include="Person\PersonApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

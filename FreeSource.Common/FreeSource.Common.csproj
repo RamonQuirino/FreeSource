@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="Application\Authorization\IAuthorizationApplication.cs" />
     <Compile Include="Application\Authorization\IUserApplication.cs" />
+    <Compile Include="Application\Person\IPersonApplication.cs" />
     <Compile Include="Domain\Authorization\IUserService.cs" />
+    <Compile Include="Domain\Person\IPersonService.cs" />
     <Compile Include="Models\AbstractModel.cs" />
     <Compile Include="Models\Authorization\Role.cs" />
     <Compile Include="Models\Authorization\User.cs" />

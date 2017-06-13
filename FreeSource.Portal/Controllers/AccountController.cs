@@ -209,7 +209,7 @@ namespace FreeSource.Portal.Controllers
             var identity = _authorizationApplication.CreateIdentityAsync(user); // DefaultAuthenticationTypes.ApplicationCookie
 
             // Write the authentication cookie
-            FormsAuthentication.SetAuthCookie(user.UserName, isPersistent);
+            FormsAuthentication.SetAuthCookie(user.Id, isPersistent);
         }
 
         // GET: /account/lock

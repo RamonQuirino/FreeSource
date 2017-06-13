@@ -23,6 +23,12 @@ namespace FreeSource.Portal.App_Start
     using FreeSource.Repository.Authorization;
     using FreeSource.Domain.Services;
     using FreeSource.Application.Authorization;
+    using FreeSource.Common.Application.Person;
+    using FreeSource.Application.Person;
+    using FreeSource.Common.Domain.Person;
+    using FreeSource.Domain.Services.Person;
+    using FreeSource.Repository.Person;
+    using FreeSource.Domain.Repository.Person;
 
     public static class NinjectWebCommon 
     {
@@ -80,7 +86,11 @@ namespace FreeSource.Portal.App_Start
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<IUserApplication>().To<UserApplication>();
 
-            kernel.Bind<IAuthorizationApplication>().To<AuthorizationApplication>();           
+            kernel.Bind<IAuthorizationApplication>().To<AuthorizationApplication>();
+
+            kernel.Bind<IPersonApplication>().To<PersonApplication>();
+            kernel.Bind<IPersonService>().To<PersonService>();
+            kernel.Bind<IPersonRepository>().To<PersonRepository>();
         }        
     }
 }
