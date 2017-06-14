@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Threading.Tasks;
 using FreeSource.Common.Models.Authorization;
 using FreeSource.Domain.Repository.Authorization;
 using FreeSource.Repository.Context;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace FreeSource.Repository.Authorization
 {
@@ -16,47 +15,39 @@ namespace FreeSource.Repository.Authorization
         {
         }
 
-        public User GetUser(string id)
+        public User GetUser(int id)
         {
             return FreeSourceModel.Users.FirstOrDefault(x => x.Id == id);
         }
 
-        public Task<User> GetUserByEmail(string email)
+        public User GetUserByEmail(string email, string password)
         {
-            var userStore = new UserStore<User>(FreeSourceModel);
-            var userManager = new UserManager<User>(userStore);
-            return userManager.FindByEmailAsync(email);
+            return FreeSourceModel.Users.FirstOrDefault(x => x.Person.Email == email && x.Password == password);
         }
 
-        public Task CreateAsync(User user)
+        public User Create(User user)
         {
-            Task task = null;
-
             try
             {
-                var userStore = new UserStore<User>(FreeSourceModel);
-                var userManager = new UserManager<User>(userStore);
-
-                userManager.Create(user, "ramones");
+                FreeSourceModel.Users.AddOrUpdate(x => x.Id, user);
+                FreeSourceModel.SaveChanges();
             }
             catch (DbEntityValidationException validationException)
             {
-                var erros = validationException.Message;
+                user.Errors.Add(validationException.Message);
             }
             catch (Exception ex)
             {
-                var erros = ex.Message;
+                user.Errors.Add(ex.Message);
             }
-            return task;
+
+            return user;
         }
 
-        public Task CreateIdentityAsync(User user)
+        public User FindByToken(string token)
         {
-            var userStore = new UserStore<User>(FreeSourceModel);
-            var userManager = new UserManager<User>(userStore);
-            return userManager.CreateIdentityAsync(user, "Forms");
+            var model = FreeSourceModel.UserTokens.OrderByDescending(x => x.Id).FirstOrDefault(x => x.Token == token);
+            return model?.User;
         }
-
-
     }
 }

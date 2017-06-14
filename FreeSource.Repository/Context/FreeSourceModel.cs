@@ -5,7 +5,7 @@ using FreeSource.Common.Models.Contact;
 using FreeSource.Common.Models.Customer;
 using FreeSource.Common.Models.Iteration;
 using FreeSource.Common.Models.Person;
-using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace FreeSource.Repository.Context
 {
@@ -31,23 +31,23 @@ namespace FreeSource.Repository.Context
             //Custom Mappings 
 
             //Authorization
-            builder.Entity<IdentityUserLogin>().HasKey(l => l.UserId);
-            builder.Entity<IdentityRole>().HasKey(r => r.Id);
-            builder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+            //builder.Entity<IdentityUserLogin>().HasKey(l => l.UserId);
+            //builder.Entity<IdentityRole>().HasKey(r => r.Id);
+            //builder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
 
             //Image 
             builder.Entity<Image>().Property(p => p.ImageSource).HasColumnType("image");
 
             //MANY TO MANY
-            builder.Entity<Common.Models.Person.Person>()
-                .HasMany(x => x.Customers)
-                .WithMany(c => c.Persons)
-                .Map(cs =>
-                {
-                    cs.MapLeftKey("PersonRefId");
-                    cs.MapRightKey("CustomerRefId");
-                    cs.ToTable("CustomerPersons");
-                });            
+            //builder.Entity<Common.Models.Person.Person>()
+            //    .HasMany(x => x.Customers)
+            //    .WithMany(c => c.Persons)
+            //    .Map(cs =>
+            //    {
+            //        cs.MapLeftKey("PersonRefId");
+            //        cs.MapRightKey("CustomerRefId");
+            //        cs.ToTable("CustomerPersons");
+            //    });            
 
             //Global Configuration
             builder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -59,9 +59,10 @@ namespace FreeSource.Repository.Context
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserLogin> UserLogins { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<UserToken> UserTokens { get; set; }
+        //public virtual DbSet<UserLogin> UserLogins { get; set; }
+        //public virtual DbSet<UserRole> UserRoles { get; set; }
+        //public virtual DbSet<Role> Roles { get; set; }
 
         public virtual DbSet<Common.Models.Person.Person> Persons { get; set; }
         public virtual DbSet<PersonType> PersonTypes { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using FreeSource.Common.Models.Authorization;
@@ -20,11 +21,11 @@ namespace FreeSource.Repository.Migration
         protected override void Seed(FreeSourceModel context)
         {
             context.ContactTypes.AddOrUpdate(
-              p => p.Description,
-              new ContactType { Description = "Contato Principal", Active = true },
-              new ContactType { Description = "Contato Recado", Active = true },
-              new ContactType { Description = "Contato Comercial", Active = true },
-              new ContactType { Description = "Contato Secundario", Active = true }
+                p => p.Description,
+                new ContactType { Description = "Contato Principal", Active = true },
+                new ContactType { Description = "Contato Recado", Active = true },
+                new ContactType { Description = "Contato Comercial", Active = true },
+                new ContactType { Description = "Contato Secundario", Active = true }
             );
 
             context.PersonTypes.AddOrUpdate(
@@ -37,26 +38,25 @@ namespace FreeSource.Repository.Migration
                 new PersonType { Description = "Administrador" }
             );
             context.DocumentTypes.AddOrUpdate(
-                t=> t.Description,
-                new DocumentType { Description = "RG"},
-                new DocumentType { Description = "CPF"},
-                new DocumentType { Description = "IE"},
-                new DocumentType { Description = "CNPJ"},
-                new DocumentType { Description = "CNH"}                
+                t => t.Description,
+                new DocumentType { Description = "RG" },
+                new DocumentType { Description = "CPF" },
+                new DocumentType { Description = "IE" },
+                new DocumentType { Description = "CNPJ" },
+                new DocumentType { Description = "CNH" }
             );
+
+            context.SaveChanges();
             context.Users.AddOrUpdate(
-               x => x.Email,
+                
                 new User
-                {
-                    Email = "ramon.ti@hotmail.com",
-                    PasswordHash = "ram17zl".GetHashCode().ToString(),
-                    UserName = "Ramon",
+                {                
+                    Password = "ram17zl",                
                     Person = new Common.Models.Person.Person
                     {
                         Email = "ramon.ti@hotmail.com",
                         Birthdate = new DateTime(1986, 01, 16),
                         Name = "Ramon Quirino",
-                        Type = context.PersonTypes.FirstOrDefault(x => x.Description == "Administrador"),
                         Documents = new List<Document>
                         {
                             new Document
@@ -70,32 +70,42 @@ namespace FreeSource.Repository.Migration
                                 Type = context.DocumentTypes.FirstOrDefault(x => x.Description == "CPF"),
                             }
                         },
-                        Customers = new List<Customer>
+                        Customers = new Collection<CustomerAccess>
                         {
-                            new Customer
+                            new CustomerAccess
                             {
-                                Person = new Common.Models.Person.Person
+                                Customer = new Customer
                                 {
-                                    Birthdate = new DateTime(2010,12,1),
-                                    Name = "Portal da Serra",
-                                    Email = "portaldaserra@gmail.com",
-                                }
+                                    Person = new Common.Models.Person.Person
+                                    {
+                                        Birthdate = new DateTime(2010, 12, 1),
+                                        Name = "Portal da Serra",
+                                        Email = "portaldaserra@gmail.com"
+                                    }
+                                },
+                                PersonType = context.PersonTypes.FirstOrDefault(x => x.Description == "Administrador")
                             },
-                            new Customer
+                            new CustomerAccess
                             {
-                                Person   = new Common.Models.Person.Person
+                                Customer = new Customer
                                 {
-                                    Birthdate = new DateTime(2010,12,1),
-                                    Name = "FreeSource",
-                                    Email = "contato@freesource.com.br"
-                                }
+                                    Person = new Common.Models.Person.Person
+                                    {
+                                        Birthdate = new DateTime(2010, 12, 1),
+                                        Name = "FreeSource",
+                                        Email = "contato@freesource.com.br"
+                                    }
+                                },
+                                PersonType = context.PersonTypes.FirstOrDefault(x => x.Description == "Administrador"),
                             }
                         }
                     }
-                }
+                }            
             );
-
+            context.SaveChanges();
         }
-
     }
 }
+
+
+

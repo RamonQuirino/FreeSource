@@ -22,7 +22,7 @@ namespace FreeSource.Repository.Person
                          select p).Include(p => p.Customers);
 
             var pessoa = query?.FirstOrDefault();
-            return pessoa?.Customers.ToList();
+            return pessoa?.Customers.Select(x => x.Customer).ToList();
         }
     }
 }

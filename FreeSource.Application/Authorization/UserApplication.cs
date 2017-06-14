@@ -13,7 +13,7 @@ namespace FreeSource.Application.Authorization
             _userService = userService;
         }
 
-        public User GetUser(string id)
+        public User GetUser(int id)
         {
             return _userService.GetUser(id);
         }

@@ -1,13 +1,12 @@
-﻿using System.Threading.Tasks;
-using FreeSource.Common.Models.Authorization;
+﻿using FreeSource.Common.Models.Authorization;
 
 namespace FreeSource.Common.Application.Authorization
 {
     public interface IAuthorizationApplication
-    {        
-        Task<User> FindByEmailAsync(string email);
-        Task CreateAsync(User user);
-        Task CreateIdentityAsync(User user);
-        User FindById(string userId);
+    {
+        User FindByEmailAsync(string email, string password);
+        User Create(User user);
+        User FindById(int userId);
+        User FindByToken(string token);
     }
 }

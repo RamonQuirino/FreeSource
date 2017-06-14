@@ -17,7 +17,7 @@ namespace FreeSource.Portal.Controllers
                     if (_loggedUser != null) return _loggedUser;
                     if (!User.Identity.IsAuthenticated) return _loggedUser;
 
-                    _loggedUser = _authorizationApplication.FindById(User.Identity.Name);
+                    _loggedUser = _authorizationApplication.FindByToken(User.Identity.Name);
                     if (_loggedUser == null)
                     {
                         RedirectToAction("Login", "Account", null);

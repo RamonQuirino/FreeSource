@@ -14,24 +14,25 @@ namespace FreeSource.Domain.Services
             _userRepository = userRepository;
         }
 
-        public User GetUser(string id)
+        public User GetUser(int id)
         {
             return _userRepository.GetUser(id);
         }
+        
 
-        public Task<User> GetUserByEmail(string email)
+        public User GetUserByEmail(string email, string password)
         {
-            return _userRepository.GetUserByEmail(email);
+            return _userRepository.GetUserByEmail(email,password);
         }
 
-        public Task CreateAsync(User user)
+        public User Create(User user)
         {
-            return _userRepository.CreateAsync(user);
+            return _userRepository.Create(user);
         }
 
-        public Task CreateIdentityAsync(User user)
+        public User FindByToken(string token)
         {
-            return _userRepository.CreateIdentityAsync(user);
+            return _userRepository.FindByToken(token);
         }
     }
 }

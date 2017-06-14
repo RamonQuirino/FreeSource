@@ -1,11 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using FreeSource.Common.Application.Authorization;
 using FreeSource.Common.Domain.Authorization;
 using FreeSource.Common.Models.Authorization;
 
 namespace FreeSource.Application.Authorization
 {
-    public class AuthorizationApplication: IAuthorizationApplication
+    public class AuthorizationApplication : IAuthorizationApplication
     {
         private readonly IUserService _userService;
 
@@ -14,24 +17,55 @@ namespace FreeSource.Application.Authorization
             _userService = userService;
         }
 
-        public Task<User> FindByEmailAsync(string email)
+        public User FindByEmailAsync(string email, string password)
         {
-            return _userService.GetUserByEmail(email);
+            var user = _userService.GetUserByEmail(email, password);
+            if (user == null) return null;
+            NewToken(email, user);
+            return _userService.Create(user);
         }
 
-        public Task CreateAsync(User user)
-        {            
-            return _userService.CreateAsync(user);
-        }
-
-        public Task CreateIdentityAsync(User user)
+        private void NewToken(string email, User user)
         {
-            return _userService.CreateIdentityAsync(user);
+            if (user.Tokens == null)
+            {
+                user.Tokens = new List<UserToken>();
+            }
+            var tokenOriginal = email + DateTime.Now.ToString("yyyyMMddhhmmss");
+            var tokenMaker = MD5.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(tokenOriginal);
+            var hash = tokenMaker.ComputeHash(inputBytes);
+
+            var sb = new StringBuilder();
+            foreach (var t in hash)
+            {
+                sb.Append(t.ToString("X2"));
+            }
+
+            user.Tokens.Add(new UserToken
+            {
+                Token = sb.ToString(),
+                Login = DateTime.Now,
+                LastAccess = DateTime.Now,
+                Expiration = DateTime.Now.AddHours(1)
+            });            
         }
 
-        public User FindById(string userId)
+        public User Create(User user)
+        {
+            return _userService.Create(user);
+        }
+
+
+
+        public User FindById(int userId)
         {
             return _userService.GetUser(userId);
+        }
+
+        public User FindByToken(string token)
+        {
+            return _userService.FindByToken(token);
         }
     }
 }

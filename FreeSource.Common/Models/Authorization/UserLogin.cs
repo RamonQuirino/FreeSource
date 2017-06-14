@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿
 
 namespace FreeSource.Common.Models.Authorization
 {
-    public class UserLogin: IdentityUserLogin
-    {
-    }
+    //public class UserLogin: IdentityUserLogin
+    //{
+    //}
 }

@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FreeSource.Common.Models.Authorization
 {    
-    public class User: IdentityUser
-    {                
+    public class User
+    {
+        public User()
+        {
+            Errors = new List<string>();
+        }
+        public virtual int Id { get; set; }
         public virtual Person.Person Person { get; set; }
+        public virtual string Password { get; set; }
+        public virtual ICollection<UserToken> Tokens { get; set; }
         public List<string> Errors { get; set; }
     }
     public class AccountLoginModel

@@ -5,9 +5,9 @@ namespace FreeSource.Common.Domain.Authorization
 {
     public interface IUserService
     {
-        User GetUser(string id);
-        Task<User> GetUserByEmail(string email);
-        Task CreateAsync(User user);
-        Task CreateIdentityAsync(User user);
+        User GetUser(int id);
+        User GetUserByEmail(string email, string password);        
+        User Create(User user);
+        User FindByToken(string token);
     }
 }

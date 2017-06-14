@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -55,7 +56,7 @@ namespace FreeSource.Portal.Controllers
                 return View(viewModel);
             
             // Verify if a user exists with the provided identity information
-            var user = await _authorizationApplication.FindByEmailAsync(viewModel.Email);
+            var user =  _authorizationApplication.FindByEmailAsync(viewModel.Email,viewModel.Password);
 
             // If a user was found
             if (user != null)
@@ -109,9 +110,9 @@ namespace FreeSource.Portal.Controllers
             // Prepare the identity with the provided information
             var user = new User
             {
-                PasswordHash = viewModel.Password.GetHashCode().ToString(),
-                UserName = viewModel.Username ?? viewModel.Email,
-                Email = viewModel.Email,                
+                Password = viewModel.Password,
+                //UserName = viewModel.Username ?? viewModel.Email,
+                //Email = viewModel.Email,                
                 Person = new Person
                 {
                     Birthdate = DateTime.Now,
@@ -123,19 +124,8 @@ namespace FreeSource.Portal.Controllers
             // Try to create a user with the given identity
             try
             {
-                var result =  _authorizationApplication.CreateAsync(user);
+                var result =  _authorizationApplication.Create(user);
 
-                //// If the user could not be created
-                //if (result.Id == null)
-                //{
-                //    // Add all errors to the page so they can be used to display what went wrong
-                //    AddErrors(result);
-
-                //    return View(viewModel);
-                //}
-
-                // If the user was able to be created we can sign it in immediately
-                // Note: Consider using the email verification proces
                 await SignInAsync(user, false);
 
                 return RedirectToLocal();
@@ -206,10 +196,10 @@ namespace FreeSource.Portal.Controllers
             FormsAuthentication.SignOut();
             
             // Create a claims based identity for the current user
-            var identity = _authorizationApplication.CreateIdentityAsync(user); // DefaultAuthenticationTypes.ApplicationCookie
+            //var identity = _authorizationApplication.Create(user); // DefaultAuthenticationTypes.ApplicationCookie
 
             // Write the authentication cookie
-            FormsAuthentication.SetAuthCookie(user.Id, isPersistent);
+            FormsAuthentication.SetAuthCookie(user.Tokens.LastOrDefault()?.Token, isPersistent);
         }
 
         // GET: /account/lock
