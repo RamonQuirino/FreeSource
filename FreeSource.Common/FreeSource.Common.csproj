@@ -70,6 +70,8 @@
     <Compile Include="Models\Iteration\Message.cs" />
     <Compile Include="Models\Iteration\Notify.cs" />
     <Compile Include="Models\Iteration\Task.cs" />
+    <Compile Include="Models\Person\Document.cs" />
+    <Compile Include="Models\Person\DocumentType.cs" />
     <Compile Include="Models\Person\Person.cs" />
     <Compile Include="Models\Person\PersonType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

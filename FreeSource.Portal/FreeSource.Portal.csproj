@@ -1065,6 +1065,7 @@
   <ItemGroup>
     <Compile Include="App_Helpers\DashRouteHandler.cs" />
     <Compile Include="App_Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="App_Helpers\SessionUserHelper.cs" />
     <Compile Include="App_Helpers\Settings.cs" />
     <Compile Include="App_Helpers\StringExtensions.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

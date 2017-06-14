@@ -1,17 +1,23 @@
 ﻿#region Using
 
 using System.Web.Mvc;
+using FreeSource.Common.Application.Authorization;
 
 #endregion
 
 namespace FreeSource.Portal.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : AbstractController
     {
+        public HomeController(IAuthorizationApplication authorizationApplication) : base(authorizationApplication)
+        {
+        }
+
         // GET: home/index
         public ActionResult Index()
         {
+            var xx = LoggedUser;
             return View();
         }
 
@@ -36,6 +42,6 @@ namespace FreeSource.Portal.Controllers
         public ActionResult Chat()
         {
             return View();
-        }
+        }        
     }
 }

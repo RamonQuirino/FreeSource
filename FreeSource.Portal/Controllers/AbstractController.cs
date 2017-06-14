@@ -6,7 +6,7 @@ namespace FreeSource.Portal.Controllers
 {
     public abstract class AbstractController : Controller
     {
-        
+
         private User _loggedUser;
         protected User LoggedUser
         {
@@ -18,6 +18,11 @@ namespace FreeSource.Portal.Controllers
                     if (!User.Identity.IsAuthenticated) return _loggedUser;
 
                     _loggedUser = _authorizationApplication.FindById(User.Identity.Name);
+                    if (_loggedUser == null)
+                    {
+                        RedirectToAction("Login", "Account", null);
+                    }
+
                     Session["LogedUser"] = _loggedUser;
                 }
                 else

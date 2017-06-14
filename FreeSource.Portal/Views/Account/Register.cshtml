@@ -5,7 +5,7 @@
 }
 
 @section topright{
-    <span id="extr-page-header-space"> <span class="hidden-mobile">Already registered?</span> <a href="@Url.Action("login", "account")" class="btn btn-danger">Sign In</a> </span>
+    <span id="extr-page-header-space"> <span class="hidden-mobile">Já sou cadastrado?</span> <a href="@Url.Action("login", "account")" class="btn btn-danger">Entrar</a> </span>
 }
 
 <div id="content" class="container">
@@ -15,44 +15,37 @@
             <div class="well no-padding">
                 <form action="@Url.Action("register", "account")" method="POST" id="smart-form-register" class="smart-form client-form">
                     <header>
-                        Registration
+                        Cadastro de Usuario
                     </header>
                     @Html.AntiForgeryToken()
                     @Html.ValidationBootstrap()
-                    <fieldset>
+                    <fieldset>                        
                         <section>
                             <label class="input">
-                                <i class="icon-append fa fa-user"></i>
-                                <input type="text" name="username" placeholder="Username" id="username" autocomplete="off" value="@Model.Username">
-                                <b class="tooltip tooltip-bottom-right">(Optional) Used to display the profile name on the website</b>
+                                <i class="icon-append fa fa-envelope"></i>
+                                <input type="email" name="email" placeholder="Email" id="email" autocomplete="off" value="@Model.Email">
+                                <b class="tooltip tooltip-bottom-right">Nescessário para utilização do sistema</b>
                             </label>
                         </section>
                         <section>
                             <label class="input">
                                 <i class="icon-append fa fa-envelope"></i>
-                                <input type="email" name="email" placeholder="Email address" id="email" autocomplete="off" value="@Model.Email">
-                                <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
-                            </label>
-                        </section>
-                        <section>
-                            <label class="input">
-                                <i class="icon-append fa fa-envelope"></i>
-                                <input type="email" name="emailConfirm" placeholder="Confirm email address" autocomplete="off" value="@Model.EmailConfirm">
-                                <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                <input type="email" name="emailConfirm" placeholder="Confirme o email" autocomplete="off" value="@Model.EmailConfirm">
+                                <b class="tooltip tooltip-bottom-right">Nescessário para garantir a verificação do email</b>
                             </label>
                         </section>
                         <section>
                             <label class="input">
                                 <i class="icon-append fa fa-lock"></i>
-                                <input type="password" name="password" placeholder="Password" id="password" autocomplete="off">
-                                <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                <input type="password" name="password" placeholder="Senha" id="password" autocomplete="off">
+                                <b class="tooltip tooltip-bottom-right">Não esqueça sua senha</b>
                             </label>
                         </section>
                         <section>
                             <label class="input">
                                 <i class="icon-append fa fa-lock"></i>
-                                <input type="password" name="passwordConfirm" placeholder="Confirm password" autocomplete="off">
-                                <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                <input type="password" name="passwordConfirm" placeholder="Confirme a senha" autocomplete="off">
+                                <b class="tooltip tooltip-bottom-right">Não esqueça sua senha</b>
                             </label>
                         </section>
                     </fieldset>
@@ -60,12 +53,12 @@
                         <div class="row">
                             <section class="col col-6">
                                 <label class="input">
-                                    <input type="text" name="firstname" placeholder="First name">
+                                    <input type="text" name="firstname" placeholder="Nome">
                                 </label>
                             </section>
                             <section class="col col-6">
                                 <label class="input">
-                                    <input type="text" name="lastname" placeholder="Last name">
+                                    <input type="text" name="lastname" placeholder="Sobrenome">
                                 </label>
                             </section>
                         </div>
@@ -73,36 +66,36 @@
                             <section class="col col-6">
                                 <label class="select">
                                     <select name="gender">
-                                        <option value="0" selected="selected" disabled="disabled">Gender</option>
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                        <option value="3">Prefer not to answer</option>
+                                        <option value="0" selected="selected" disabled="disabled">Sexo</option>
+                                        <option value="1">Masculino</option>
+                                        <option value="2">Feminino</option>
+                                        <option value="3">Prefiro não responder</option>
                                     </select> <i></i>
                                 </label>
                             </section>
                             <section class="col col-6">
                                 <label class="input">
                                     <i class="icon-append fa fa-calendar"></i>
-                                    <input type="text" name="birthdate" placeholder="Birthdate" class="datepicker" data-dateformat='dd/mm/yy'>
+                                    <input type="text" name="Data Nascimento" placeholder="Data de Nascimento" class="datepicker" data-dateformat='dd/mm/yy'>
                                 </label>
                             </section>
                         </div>
                         <section>
                             <label class="checkbox">
                                 <input type="checkbox" name="terms" id="terms">
-                                <i></i>I agree with the <a href="#" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a>
+                                <i></i>Eu concordo com <a href="#" data-toggle="modal" data-target="#myModal"> Termos e Condiçõed </a>
                             </label>
                         </section>
                     </fieldset>
                     <footer>
                         <button type="submit" class="btn btn-primary">
-                            Register
+                            Cadastra-se
                         </button>
                     </footer>
                     <div class="message">
                         <i class="fa fa-check"></i>
                         <p>
-                            Thank you for your registration!
+                            Obrigado por cadastrar-se em nosso portal.
                         </p>
                     </div>
                 </form>

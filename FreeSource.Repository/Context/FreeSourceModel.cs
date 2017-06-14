@@ -4,6 +4,7 @@ using FreeSource.Common.Models.Authorization;
 using FreeSource.Common.Models.Contact;
 using FreeSource.Common.Models.Customer;
 using FreeSource.Common.Models.Iteration;
+using FreeSource.Common.Models.Person;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FreeSource.Repository.Context
@@ -18,7 +19,7 @@ namespace FreeSource.Repository.Context
         // 
         // If you wish to target a different database and/or database provider, modify the 'FreeSourceModel' 
         // connection string in the application configuration file.
-        public FreeSourceModel() : base("name=FreeSourceModel")
+        public FreeSourceModel() : base("FreeSourceModel")
         {
 
         }
@@ -63,8 +64,11 @@ namespace FreeSource.Repository.Context
         public virtual DbSet<Role> Roles { get; set; }
 
         public virtual DbSet<Common.Models.Person.Person> Persons { get; set; }
-        public virtual DbSet<Common.Models.Person.PersonType> PersonTypes { get; set; }
+        public virtual DbSet<PersonType> PersonTypes { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+
 
         public virtual DbSet<ContactType> ContactTypes { get; set; }
         public virtual DbSet<Email> Emails { get; set; }

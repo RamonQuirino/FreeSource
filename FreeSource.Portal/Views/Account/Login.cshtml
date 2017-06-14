@@ -6,7 +6,7 @@
 }
 
 @section topright{
-    <span id="extr-page-header-space"> <span class="hidden-mobile">Need an account?</span> <a href="@Url.Action("register", "account")" class="btn btn-danger">Create account</a> </span>
+    <span id="extr-page-header-space"> <span class="hidden-mobile">Precisa de usuario?</span> <a href="@Url.Action("register", "account")" class="btn btn-danger">Cadastrar-se</a> </span>
 }
 
 <div id="content" class="container">
@@ -16,7 +16,7 @@
             <div class="well no-padding">
                 <form action="@Url.Action("login", "account")" method="POST" id="login-form" class="smart-form client-form">
                     <header>
-                        Sign In
+                        Entrar
                     </header>
                     @Html.HiddenFor(m => m.ReturnUrl)
                     @Html.AntiForgeryToken()
@@ -26,20 +26,20 @@
                             <label class="label">E-mail</label>
                             <label class="input">
                                 <i class="icon-append fa fa-user"></i>
-                                <input type="email" name="email" value="demo@email.com">
-                                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b>
+                                <input type="email" name="email" placeholder="email@email.com">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor digite o email cadastrado</b>
                             </label>
                         </section>
 
                         <section>
-                            <label class="label">Password</label>
+                            <label class="label">Senha</label>
                             <label class="input">
                                 <i class="icon-append fa fa-lock"></i>
                                 <input type="password" name="password" value="demo">
-                                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Digite sua senha</b>
                             </label>
                             <div class="note">
-                                <a href="@Url.Action("forgotpassword", "account")"><i class="fa fa-frown-o"></i> Forgot password?</a>
+                                <a href="@Url.Action("forgotpassword", "account")"><i class="fa fa-frown-o"></i> Lembrar senha?</a>
                             </div>
                         </section>
 
@@ -47,13 +47,13 @@
                             <label class="checkbox">
                                 <input type="checkbox" name="rememberMe" value="true" checked="checked">
                                 <input type="hidden" name="rememberMe" value="false" />
-                                <i></i>Stay signed in
+                                <i></i>Permanecer logado?
                             </label>
                         </section>
                     </fieldset>
                     <footer>
                         <button type="submit" class="btn btn-primary">
-                            Sign in
+                            Cadastrar-se
                         </button>
                     </footer>
                 </form>
@@ -83,11 +83,11 @@
                 // Messages for form validation
                 messages: {
                     email: {
-                        required: 'Please enter your email address',
-                        email: 'Please enter a VALID email address'
+                        required: 'Por favor digite um email',
+                        email: 'Por favor digite um email válido'
                     },
                     password: {
-                        required: 'Please enter your password'
+                        required: 'Por favor digite sua senha'
                     }
                 },
 
