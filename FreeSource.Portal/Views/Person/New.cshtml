@@ -1,6 +1,6 @@
 ﻿@model FreeSource.Portal.ViewModels.Person.PersonViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cadastro de Pessoas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -44,7 +44,7 @@
                         <header role="heading">
                             <span class="widget-icon"> <i class="glyphicon glyphicon-search txt-color-darken"></i> </span>
                             <h2>
-                                <strong>Pesquisa </strong> <i>de pessoas</i>
+                                <strong>Cadastro </strong> <i>de pessoas</i>
                             </h2>
                         </header>
 
@@ -62,45 +62,30 @@
                                 <form class="smart-form">
                                     <fieldset>
                                         <section>
-                                            <label class="label">Filtro de busca</label>
                                             <label class="input">
-                                                <input type="text">
+                                                <i class="icon-prepend fa fa-user"></i>
+                                                <input type="text" name="fname" placeholder="Nome Completo">
                                             </label>
                                         </section>
-
                                         <section>
-                                            <label class="label">Filtros para pesquisa de clientes</label>
-                                            <div class="inline-group">
-                                                <label class="radio">
-                                                    <input type="radio" name="radio-inline" checked="checked">
-                                                    <i></i>Nome
-                                                </label>
-                                                <label class="radio">
-                                                    <input type="radio" name="radio-inline">
-                                                    <i></i>CPF/CNPJ
-                                                </label>
-                                                <label class="radio">
-                                                    <input type="radio" name="radio-inline">
-                                                    <i></i>RG/IE
-                                                </label>
-                                                <label class="radio">
-                                                    <input type="radio" name="radio-inline">
-                                                    <i></i>Código
-                                                </label>
-                                            </div>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-envelope"></i>
+                                                <input type="text" name="fname" placeholder="Email de contato">
+                                            </label>
+                                        </section>
+                                        <section >
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-calendar"></i>
+                                                <input type="text" name="request" placeholder="Data de Nascimento" class="datepicker" data-dateformat="dd/mm/yy" id="birthdate">
+                                            </label>
                                         </section>
                                     </fieldset>
                                 </form>
 
-
-
                                 <div class="widget-footer">
-                                    <button class="btn btn-sm btn-primary" type="button" id="new-person-button">
-                                        Novo
+                                    <button class="btn btn-sm btn-primary" type="button" id="save-new-person-button">
+                                        Salvar
                                     </button>
-                                    <button class="btn btn-sm btn-primary" type="button">
-                                        Buscar
-                                    </button>                                    
                                     <button class="btn btn-sm btn-danger  pull-left" type="button">
                                         Limpar
                                     </button>
@@ -124,12 +109,16 @@
     <!-- END MAIN CONTENT -->
     @section pagespecific {
         <script>
-            $(document).ready(function() {
-                $("#new-person-button").click(function() {
-                    window.location = "/person/new";
+            $(function () {
+                //$("#birthdate").datepicker();
+                $("#save-new-person-button").click(function () {
+                    savePerson();
                 });
-            })
-            
+            });
+            function savePerson() {
+                
+            }
+
         </script>
     }
 }
@@ -137,3 +126,4 @@ else
 {
     Html.RenderPartial("_error", Model);
 }
+

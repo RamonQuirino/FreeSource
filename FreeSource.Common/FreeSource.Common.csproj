@@ -53,11 +53,10 @@
     <Compile Include="Domain\Authorization\IUserService.cs" />
     <Compile Include="Domain\Person\IPersonService.cs" />
     <Compile Include="Models\AbstractModel.cs" />
-    <Compile Include="Models\Authorization\Role.cs" />
     <Compile Include="Models\Authorization\User.cs" />
-    <Compile Include="Models\Authorization\UserLogin.cs" />
-    <Compile Include="Models\Authorization\UserRole.cs" />
     <Compile Include="Models\Authorization\UserToken.cs" />
+    <Compile Include="Models\Vehicle\Vehicle.cs" />
+    <Compile Include="Models\Vehicle\VehicleType.cs" />
     <Compile Include="Models\Contact\Email.cs" />
     <Compile Include="Models\Contact\ContactType.cs" />
     <Compile Include="Models\Customer\Customer.cs" />

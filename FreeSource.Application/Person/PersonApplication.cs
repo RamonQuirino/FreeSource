@@ -12,7 +12,7 @@ namespace FreeSource.Application.Person
 
         public PersonApplication(IPersonService personService)
         {
-            _personService = personService;
+            _personService = personService; 
         }
 
         public IList<Customer> GetCustomersByUser(User user)

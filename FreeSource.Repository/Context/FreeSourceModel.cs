@@ -5,6 +5,7 @@ using FreeSource.Common.Models.Contact;
 using FreeSource.Common.Models.Customer;
 using FreeSource.Common.Models.Iteration;
 using FreeSource.Common.Models.Person;
+using FreeSource.Common.Models.Vehicle;
 
 
 namespace FreeSource.Repository.Context
@@ -60,9 +61,6 @@ namespace FreeSource.Repository.Context
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserToken> UserTokens { get; set; }
-        //public virtual DbSet<UserLogin> UserLogins { get; set; }
-        //public virtual DbSet<UserRole> UserRoles { get; set; }
-        //public virtual DbSet<Role> Roles { get; set; }
 
         public virtual DbSet<Common.Models.Person.Person> Persons { get; set; }
         public virtual DbSet<PersonType> PersonTypes { get; set; }
@@ -70,6 +68,7 @@ namespace FreeSource.Repository.Context
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<DocumentType> DocumentTypes { get; set; }
 
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
 
         public virtual DbSet<ContactType> ContactTypes { get; set; }
         public virtual DbSet<Email> Emails { get; set; }

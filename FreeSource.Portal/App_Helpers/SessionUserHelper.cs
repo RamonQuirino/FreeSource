@@ -7,7 +7,20 @@ namespace FreeSource.Portal.App_Helpers
     {
         public static User CurrentUser()
         {
-            return HttpContext.Current.Session["LogedUser"] as User;
+            var usuario = HttpContext.Current.Session["LogedUser"] as User;
+            if (usuario == null)
+            {
+                
+            }
+
+            return usuario;
+
+        }
+
+        public static string LoggedUserName()
+        {
+            var user = CurrentUser();
+            return user == null ? "" : user.Person?.Name;
         }
     }
 }
