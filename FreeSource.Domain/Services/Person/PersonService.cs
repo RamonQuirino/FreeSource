@@ -20,5 +20,10 @@ namespace FreeSource.Domain.Services.Person
         {
             return _personRepository.GetCustomersByUser(user);
         }
+
+        public void Save(Common.Models.Person.Person person)
+        {
+            _personRepository.Save(person);
+        }
     }
 }

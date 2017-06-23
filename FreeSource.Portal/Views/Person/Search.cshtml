@@ -1,0 +1,11 @@
+﻿@model FreeSource.Portal.ViewModels.Person.PersonSearchViewModel
+
+
+@if (Model.IsValid())
+{
+    <h2>Tabela</h2>
+}
+else
+{
+    Html.RenderPartial("_error", Model);
+}

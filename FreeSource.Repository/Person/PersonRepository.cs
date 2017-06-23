@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using FreeSource.Common.Models.Authorization;
 using FreeSource.Common.Models.Customer;
@@ -23,6 +24,12 @@ namespace FreeSource.Repository.Person
 
             var pessoa = query?.FirstOrDefault();
             return pessoa?.Customers.Select(x => x.Customer).ToList();
+        }
+
+        public void Save(Common.Models.Person.Person person)
+        {
+            FreeSourceModel.Persons.AddOrUpdate(x => x.Id, person);
+            FreeSourceModel.SaveChanges();
         }
     }
 }

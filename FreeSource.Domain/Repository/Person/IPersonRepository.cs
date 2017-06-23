@@ -7,5 +7,6 @@ namespace FreeSource.Domain.Repository.Person
     public interface IPersonRepository
     {
         IList<Customer> GetCustomersByUser(User user);
+        void Save(Common.Models.Person.Person person);
     }
 }

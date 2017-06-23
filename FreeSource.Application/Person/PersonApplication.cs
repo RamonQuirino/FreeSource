@@ -19,5 +19,10 @@ namespace FreeSource.Application.Person
         {
             return _personService.GetCustomersByUser(user);
         }
+
+        public void Save(Common.Models.Person.Person person)
+        {
+            _personService.Save(person);
+        }
     }
 }

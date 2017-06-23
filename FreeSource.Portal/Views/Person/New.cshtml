@@ -1,4 +1,5 @@
-﻿@model FreeSource.Portal.ViewModels.Person.PersonViewModel
+﻿@using FreeSource.Portal.App_Helpers
+@model FreeSource.Portal.ViewModels.Person.PersonViewModel
 @{
     ViewBag.Title = "Cadastro de Pessoas";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,6 +7,8 @@
 
 @if (Model.IsValid())
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationBootstrap()
     <!-- MAIN CONTENT -->
     <div id="content">
         <div class="row">
@@ -60,25 +63,66 @@
                             <div class="widget-body no-padding">
 
                                 <form class="smart-form">
+                                    <input type="hidden" id="id-person" value="" />
                                     <fieldset>
                                         <section>
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-user"></i>
-                                                <input type="text" name="fname" placeholder="Nome Completo">
+                                                <input type="text" name="name" id="person-name" placeholder="Nome Completo">
                                             </label>
                                         </section>
                                         <section>
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-envelope"></i>
-                                                <input type="text" name="fname" placeholder="Email de contato">
+                                                <input type="text" name="email" id="person-email" placeholder="Email de contato">
                                             </label>
                                         </section>
-                                        <section >
-                                            <label class="input">
-                                                <i class="icon-prepend fa fa-calendar"></i>
-                                                <input type="text" name="request" placeholder="Data de Nascimento" class="datepicker" data-dateformat="dd/mm/yy" id="birthdate">
-                                            </label>
+                                        <section>
+                                            <label class="label">Pessoa</label>
+                                            <div class="inline-group">
+                                                <label class="radio">
+                                                    <input type="radio" name="checkbox-pessoa" value="F" id="radio-pessoa-fisica">
+                                                    <i></i>Fisica
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" name="checkbox-pessoa" value="J" id="radio-pessoa-juridica">
+                                                    <i></i>Juridica
+                                                </label>
+                                            </div>
                                         </section>
+                                        <div style="display: none" id="div-person-documents">
+                                            <section>
+                                                <label class="input">
+                                                    <i class="icon-prepend fa fa-calendar"></i>
+                                                    <input type="text" name="birthday" placeholder="Data" class="datepicker" data-dateformat="dd/mm/yy" id="person-birthdate">
+                                                </label>
+                                            </section>
+                                            <section>
+                                                <label class="input">
+                                                    @*<i class="icon-prepend fa fa-envelope"></i>*@
+                                                    <input type="text" id="person-cpf-cnpj" placeholder="CPF">
+                                                </label>
+                                            </section>
+                                            <section>
+                                                <label class="input">
+                                                    @*<i class="icon-prepend fa fa-envelope"></i>*@
+                                                    <input type="text" id="person-rg-ie" placeholder="RG">
+                                                </label>
+                                            </section>
+                                            <section id="section-person-genere" style="display: none">
+                                                <label class="label">Sexo</label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="checkbox-sexo" value="F" id="radio-sexo-feminino">
+                                                        <i></i>Feminino
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="checkbox-sexo" value="M" id="radio-sexo-masculino">
+                                                        <i></i>Masculino
+                                                    </label>
+                                                </div>
+                                            </section>
+                                        </div>
                                     </fieldset>
                                 </form>
 
@@ -114,9 +158,38 @@
                 $("#save-new-person-button").click(function () {
                     savePerson();
                 });
+                $("#radio-pessoa-fisica").click(function () {
+                    $("#section-person-genere").show();
+                    $("#person-cpf-cnpj").prop("placeholder", "CPF");
+                    $("#person-rg-ie").prop("placeholder", "RG");
+                    $("#person-birthdate").prop("placeholder", "Data Nascimento");
+                    $("#div-person-documents").show();
+                });
+                $("#radio-pessoa-juridica").click(function () {
+                    $("#section-person-genere").hide();
+                    $("#person-cpf-cnpj").prop("placeholder", "CNPJ");
+                    $("#person-rg-ie").prop("placeholder", "IE");
+                    $("#person-birthdate").prop("placeholder", "Data Abertura");
+                    $("#div-person-documents").show();
+                });
+
             });
             function savePerson() {
-                
+                let person = {
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                    Id: $("#id-person").val(),
+                    Name: $("#person-name").val(),
+                    Email: $("#person-email").val(),
+                    Birthdate: $("#person-birthdate").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/person/save",
+                    data: person,
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
             }
 
         </script>
