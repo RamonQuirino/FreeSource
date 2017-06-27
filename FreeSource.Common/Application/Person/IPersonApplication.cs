@@ -8,5 +8,7 @@ namespace FreeSource.Common.Application.Person
     {
         IList<Customer> GetCustomersByUser(User user);
         void Save(Models.Person.Person person);
+        IList<Models.Person.Person> Filter(string filterText,bool isName,bool isCpfCnpj, bool isRgIe, bool isCodigo);
+        Models.Person.Person GetPerson(int personId);
     }
 }

@@ -1,11 +1,50 @@
 ﻿@model FreeSource.Portal.ViewModels.Person.PersonSearchViewModel
-
+@{
+    Layout = null;
+}
 
 @if (Model.IsValid())
 {
-    <h2>Tabela</h2>
-}
-else
-{
-    Html.RenderPartial("_error", Model);
-}
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                <th>&nbsp;</th>
+                <th>Name</th>
+                <th>Data Nascimento/Abertura</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Condominio</th>
+            </tr>
+            @foreach (var person in Model.Persons)
+            {
+                <tr>
+                    <td>
+                        <a href='@Url.Action("Edit","Person", new {id= person.Id})' class="btn btn-default" rel="tooltip" data-original-title="Alterar Pessoa" data-placement="right" person-id="@person.Id"><i class="fa fa-edit"></i></a>
+                    </td>
+                    <td>@person.Name</td>
+                    <td>@person.Birthdate.ToString("d")</td>
+                    <td>@person.Email</td>
+                    <td>
+                        @{
+                            var customerPerson = person.Customers.FirstOrDefault();
+                        }
+                        @if (customerPerson != null)
+                        {
+                            @customerPerson.PersonRole.Description
+                        }
+                    </td>
+                    <td>
+                        @if (customerPerson != null)
+                        {
+                            @customerPerson.Customer.Person.Email
+                        }
+                    </td>
+                </tr>
+                            }
+        </table>
+    </div>
+                            }
+                            else
+                            {
+                                Html.RenderPartial("_error", Model);
+                            }

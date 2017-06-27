@@ -64,7 +64,7 @@
                                         <section>
                                             <label class="label">Filtro de busca</label>
                                             <label class="input">
-                                                <input type="text">
+                                                <input type="text" id="person-filter-text">
                                             </label>
                                         </section>
 
@@ -98,9 +98,9 @@
                                     <button class="btn btn-sm btn-primary" type="button" id="new-person-button">
                                         Novo
                                     </button>
-                                    <button class="btn btn-sm btn-primary" type="button">
+                                    <button class="btn btn-sm btn-primary" type="button" id="search-person-button">
                                         Buscar
-                                    </button>                                    
+                                    </button>
                                     <button class="btn btn-sm btn-danger  pull-left" type="button">
                                         Limpar
                                     </button>
@@ -116,20 +116,88 @@
                     </div>
                 </article>
             </div>
-
             <!-- row -->
+            <div class="row" id="">
+                <article class="col-sm-12">
+                    <div class="jarviswidget jarviswidget-sortable" id="wid-id-1"
+                         data-widget-colorbutton="false"
+                         data-widget-togglebutton="false"
+                         data-widget-editbutton="false"
+                         data-widget-fullscreenbutton="false"
+                         data-widget-deletebutton="false"
+                         role="widget">
+                        <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                        -->
+                        <header role="heading">
+                            <span class="widget-icon"> <i class="glyphicon glyphicon-search txt-color-darken"></i> </span>
+                            <h2>
+                                <strong>Resultado </strong> <i>da pesquisa</i>
+                            </h2>
+                        </header>
+                        <div role="content">
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+                            </div>
+                            <!-- end widget edit box -->
+                            <!-- widget content -->
+                            <div class="widget-body no-padding" id="content-search-div">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
     </div>
     <!-- END MAIN CONTENT -->
     @section pagespecific {
         <script>
-            $(document).ready(function() {
-                $("#new-person-button").click(function() {
-                    window.location = "/person/new";
+            $(document).ready(function () {
+                $("#new-person-button").click(function () {
+                    window.location = '@Url.Action("Index","Person")';
                 });
-            })
-            
+                $("#search-person-button").click(function () {
+                    searchPersons();
+                });
+            });
+
+            function searchPersons() {
+                let data = {
+                    FilterText: $("#person-filter-text").val()
+                };
+                let action = function (response) {
+                    $("#content-search-div").html(response);
+                };
+                let url = '@Url.Action("Search", "Person")';
+                doRequest(url, action, data, "POST");
+            }
+           
+            function doRequest(url, action, data, httpVerb) {
+                $.ajax(
+                    {
+                        url: url,
+                        data: data,
+                        type: httpVerb,
+                        success: function (result) {
+                            action(result);
+                            $('a[rel="tooltip"]').tooltip();
+                        }
+                    }
+                );
+            }
+
         </script>
     }
 }

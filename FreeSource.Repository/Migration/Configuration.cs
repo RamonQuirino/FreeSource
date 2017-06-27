@@ -28,23 +28,15 @@ namespace FreeSource.Repository.Migration
                 new ContactType { Description = "Contato Secundario", Active = true }
             );
 
-            context.PersonTypes.AddOrUpdate(
+            context.PersonRoles.AddOrUpdate(
                 t => t.Description,
-                new PersonType { Description = "Morador" },
-                new PersonType { Description = "Condominio" },
-                new PersonType { Description = "Utilizador" },
-                new PersonType { Description = "Terceiro" },
-                new PersonType { Description = "Predial" },
-                new PersonType { Description = "Administrador" }
-            );
-            context.DocumentTypes.AddOrUpdate(
-                t => t.Description,
-                new DocumentType { Description = "RG" },
-                new DocumentType { Description = "CPF" },
-                new DocumentType { Description = "IE" },
-                new DocumentType { Description = "CNPJ" },
-                new DocumentType { Description = "CNH" }
-            );
+                new PersonRole { Description = "Morador" },
+                new PersonRole { Description = "Condominio" },
+                new PersonRole { Description = "Utilizador" },
+                new PersonRole { Description = "Terceiro" },
+                new PersonRole { Description = "Predial" },
+                new PersonRole { Description = "Administrador" }
+            );           
 
             context.SaveChanges();
             context.Users.AddOrUpdate(
@@ -57,17 +49,19 @@ namespace FreeSource.Repository.Migration
                         Email = "ramon.ti@hotmail.com",
                         Birthdate = new DateTime(1986, 01, 16),
                         Name = "Ramon Quirino",
+                        PersonGenre = PersonGenre.Male,
+                        PersonType = PersonType.Fisic,
                         Documents = new List<Document>
                         {
                             new Document
                             {
                                 Number = "422623775",
-                                Type = context.DocumentTypes.FirstOrDefault(x => x.Description == "RG"),
+                                Type = DocumentType.RgIe,
                             },
                             new Document
                             {
                                 Number = "34788560860",
-                                Type = context.DocumentTypes.FirstOrDefault(x => x.Description == "CPF"),
+                                Type = DocumentType.CpfCnpj
                             }
                         },
                         Customers = new Collection<CustomerAccess>
@@ -80,10 +74,12 @@ namespace FreeSource.Repository.Migration
                                     {
                                         Birthdate = new DateTime(2010, 12, 1),
                                         Name = "Portal da Serra",
-                                        Email = "portaldaserra@gmail.com"
+                                        Email = "portaldaserra@gmail.com",
+                                        PersonType = PersonType.Juridic,
+                                        PersonGenre = null
                                     }
                                 },
-                                PersonType = context.PersonTypes.FirstOrDefault(x => x.Description == "Administrador")
+                                PersonRole = context.PersonRoles.FirstOrDefault(x => x.Description == "Administrador")
                             },
                             new CustomerAccess
                             {
@@ -93,10 +89,12 @@ namespace FreeSource.Repository.Migration
                                     {
                                         Birthdate = new DateTime(2010, 12, 1),
                                         Name = "FreeSource",
-                                        Email = "contato@freesource.com.br"
+                                        Email = "contato@freesource.com.br",
+                                        PersonType = PersonType.Juridic,
+                                        PersonGenre = null
                                     }
                                 },
-                                PersonType = context.PersonTypes.FirstOrDefault(x => x.Description == "Administrador"),
+                                PersonRole = context.PersonRoles.FirstOrDefault(x => x.Description == "Administrador"),
                             }
                         }
                     }

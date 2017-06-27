@@ -25,5 +25,15 @@ namespace FreeSource.Domain.Services.Person
         {
             _personRepository.Save(person);
         }
+
+        public IList<Common.Models.Person.Person> Filter(string filterText, bool isName, bool isCpfCnpj, bool isRgIe, bool isCodigo)
+        {
+            return _personRepository.Filter(filterText, isName, isCpfCnpj, isRgIe, isCodigo);
+        }
+
+        public Common.Models.Person.Person GetPerson(int personId)
+        {
+            return _personRepository.GetPerson(personId);
+        }
     }
 }

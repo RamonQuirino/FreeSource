@@ -1,8 +1,9 @@
-﻿namespace FreeSource.Common.Models.Person
+﻿
+namespace FreeSource.Common.Models.Person
 {
-    public class PersonType
+    public enum PersonType
     {
-        public virtual int Id { get; set; }
-        public virtual string Description { get; set; }
+        Fisic = 1,
+        Juridic = 2
     }
 }

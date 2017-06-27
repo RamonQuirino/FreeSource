@@ -8,6 +8,6 @@ namespace FreeSource.Common.Models.Customer
         public virtual int Id { get; set; }
         public virtual Customer Customer { get; set; }
         //public virtual Person.Person Person { get; set; }
-        public virtual PersonType PersonType { get; set; }
+        public virtual PersonRole PersonRole { get; set; }
     }
 }

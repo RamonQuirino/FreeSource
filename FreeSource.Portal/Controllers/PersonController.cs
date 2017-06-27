@@ -1,5 +1,4 @@
-﻿using System.Web.Helpers;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using FreeSource.Common.Application.Authorization;
 using FreeSource.Common.Application.Person;
 using FreeSource.Common.Models.Person;
@@ -28,12 +27,20 @@ namespace FreeSource.Portal.Controllers
             var model = new PersonViewModel();
             return View(model);
         }
+        public ActionResult Edit(int id)
+        {
+            var model = new PersonViewModel
+            {
+                Person = _personApplication.GetPerson(id)
+            };
+            return PartialView("New", model);
+        }
 
         [HttpPost]
-        public ActionResult Search()
+        public ActionResult Search(PersonSearchViewModel filterModel)
         {
-            var model = new PersonSearchViewModel();
-            return View(model);
+            filterModel.Persons = _personApplication.Filter(filterModel.FilterText, true, false, false, false);
+            return View(filterModel);
         }
 
         [ValidateAntiForgeryToken]

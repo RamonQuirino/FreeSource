@@ -1,9 +1,10 @@
 ﻿
 namespace FreeSource.Common.Models.Person
 {
-    public class DocumentType
+    public enum DocumentType
     {
-        public int Id { get; set; }
-        public string Description { get; set; }
+        CpfCnpj = 1,
+        RgIe = 2,
+        Cnh = 3
     }
 }

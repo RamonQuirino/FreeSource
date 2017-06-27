@@ -55,6 +55,8 @@
     <Compile Include="Models\AbstractModel.cs" />
     <Compile Include="Models\Authorization\User.cs" />
     <Compile Include="Models\Authorization\UserToken.cs" />
+    <Compile Include="Models\Person\PersonGenre.cs" />
+    <Compile Include="Models\Person\PersonType.cs" />
     <Compile Include="Models\Vehicle\Vehicle.cs" />
     <Compile Include="Models\Vehicle\VehicleType.cs" />
     <Compile Include="Models\Contact\Email.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="Models\Person\Document.cs" />
     <Compile Include="Models\Person\DocumentType.cs" />
     <Compile Include="Models\Person\Person.cs" />
-    <Compile Include="Models\Person\PersonType.cs" />
+    <Compile Include="Models\Person\PersonRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

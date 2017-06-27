@@ -63,10 +63,10 @@ namespace FreeSource.Repository.Context
         public virtual DbSet<UserToken> UserTokens { get; set; }
 
         public virtual DbSet<Common.Models.Person.Person> Persons { get; set; }
-        public virtual DbSet<PersonType> PersonTypes { get; set; }
+        public virtual DbSet<PersonRole> PersonRoles { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
-        public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+        
 
         public virtual DbSet<Vehicle> Vehicles { get; set; }
 
