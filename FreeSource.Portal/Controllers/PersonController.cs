@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using FreeSource.Common.Application.Authorization;
 using FreeSource.Common.Application.Person;
 using FreeSource.Common.Models.Person;
@@ -24,14 +25,21 @@ namespace FreeSource.Portal.Controllers
 
         public ActionResult New()
         {
-            var model = new PersonViewModel();
+            var model = new PersonViewModel
+            {
+                CustomerAccesses = LoggedUser.Person.Customers.ToList(),
+                PersonRoles = _personApplication.GetAllPersonRoles()
+            };
             return View(model);
         }
+        [Route("Person/Edit/{id}")]
         public ActionResult Edit(int id)
         {
             var model = new PersonViewModel
             {
-                Person = _personApplication.GetPerson(id)
+                Person = _personApplication.GetPerson(id),
+                CustomerAccesses = LoggedUser.Person.Customers.ToList(),
+                PersonRoles = _personApplication.GetAllPersonRoles()
             };
             return PartialView("New", model);
         }

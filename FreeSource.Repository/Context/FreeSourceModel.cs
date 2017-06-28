@@ -65,6 +65,7 @@ namespace FreeSource.Repository.Context
         public virtual DbSet<Common.Models.Person.Person> Persons { get; set; }
         public virtual DbSet<PersonRole> PersonRoles { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<CustomerAccess> CustomerAccesses { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
         
 

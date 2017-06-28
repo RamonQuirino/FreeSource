@@ -36,70 +36,85 @@ namespace FreeSource.Repository.Migration
                 new PersonRole { Description = "Terceiro" },
                 new PersonRole { Description = "Predial" },
                 new PersonRole { Description = "Administrador" }
-            );           
+            );
 
             context.SaveChanges();
-            context.Users.AddOrUpdate(
-                
-                new User
-                {                
-                    Password = "ram17zl",                
-                    Person = new Common.Models.Person.Person
+
+            var personRamon = context.Persons.FirstOrDefault(x => x.Email == "ramon.ti@hotmail.com");
+                        
+            var user = new User
+            {                
+                Password = "ram17zl",
+                Person = new Common.Models.Person.Person
+                {
+                    Email = "ramon.ti@hotmail.com",
+                    Birthdate = new DateTime(1986, 01, 16),
+                    Name = "Ramon Quirino",
+                    PersonGenre = PersonGenre.Male,
+                    PersonType = PersonType.Fisic,
+                    Documents = new List<Document>
                     {
-                        Email = "ramon.ti@hotmail.com",
-                        Birthdate = new DateTime(1986, 01, 16),
-                        Name = "Ramon Quirino",
-                        PersonGenre = PersonGenre.Male,
-                        PersonType = PersonType.Fisic,
-                        Documents = new List<Document>
+                        new Document
                         {
-                            new Document
-                            {
-                                Number = "422623775",
-                                Type = DocumentType.RgIe,
-                            },
-                            new Document
-                            {
-                                Number = "34788560860",
-                                Type = DocumentType.CpfCnpj
-                            }
+                            Number = "422623775",
+                            Type = DocumentType.RgIe,
                         },
-                        Customers = new Collection<CustomerAccess>
+                        new Document
                         {
-                            new CustomerAccess
+                            Number = "34788560860",
+                            Type = DocumentType.CpfCnpj
+                        }
+                    },
+                    Customers = new Collection<CustomerAccess>
+                    {
+                        new CustomerAccess
+                        {
+                            Customer = new Customer
                             {
-                                Customer = new Customer
+                                Person = new Common.Models.Person.Person
                                 {
-                                    Person = new Common.Models.Person.Person
-                                    {
-                                        Birthdate = new DateTime(2010, 12, 1),
-                                        Name = "Portal da Serra",
-                                        Email = "portaldaserra@gmail.com",
-                                        PersonType = PersonType.Juridic,
-                                        PersonGenre = null
-                                    }
+                                    Birthdate = new DateTime(2010, 12, 1),
+                                    Name = "Portal da Serra",
+                                    Email = "portaldaserra@gmail.com",
+                                    PersonType = PersonType.Juridic,
+                                    PersonGenre = null
                                 },
-                                PersonRole = context.PersonRoles.FirstOrDefault(x => x.Description == "Administrador")
+                                Active = true
                             },
-                            new CustomerAccess
+                            PersonRole = context.PersonRoles.FirstOrDefault(x => x.Description == "Administrador"),
+                            Active = true
+                        },
+                        new CustomerAccess
+                        {
+                            Customer = new Customer
                             {
-                                Customer = new Customer
+                                Person = new Common.Models.Person.Person
                                 {
-                                    Person = new Common.Models.Person.Person
-                                    {
-                                        Birthdate = new DateTime(2010, 12, 1),
-                                        Name = "FreeSource",
-                                        Email = "contato@freesource.com.br",
-                                        PersonType = PersonType.Juridic,
-                                        PersonGenre = null
-                                    }
+                                    Birthdate = new DateTime(2010, 12, 1),
+                                    Name = "FreeSource",
+                                    Email = "contato@freesource.com.br",
+                                    PersonType = PersonType.Juridic,
+                                    PersonGenre = null
                                 },
-                                PersonRole = context.PersonRoles.FirstOrDefault(x => x.Description == "Administrador"),
-                            }
+                                Active = true
+                            },
+                            PersonRole = context.PersonRoles.FirstOrDefault(x => x.Description == "Administrador"),
+                            Active = true
                         }
                     }
-                }            
-            );
+                }
+            };
+
+            if (personRamon != null)
+            {
+                var userRamon = context.Users.FirstOrDefault(u => u.Person.Id == personRamon.Id);
+                if (userRamon != null)
+                {
+                    user.Id = userRamon.Id;
+                }
+            }
+
+            context.Users.AddOrUpdate(x => x.Id,user);
             context.SaveChanges();
         }
     }

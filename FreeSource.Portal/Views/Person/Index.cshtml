@@ -95,9 +95,9 @@
 
 
                                 <div class="widget-footer">
-                                    <button class="btn btn-sm btn-primary" type="button" id="new-person-button">
+                                    <a class="btn btn-sm btn-primary" id="new-person-button" href='@Url.Action("New","Person")'>
                                         Novo
-                                    </button>
+                                    </a>
                                     <button class="btn btn-sm btn-primary" type="button" id="search-person-button">
                                         Buscar
                                     </button>
@@ -164,10 +164,7 @@
     <!-- END MAIN CONTENT -->
     @section pagespecific {
         <script>
-            $(document).ready(function () {
-                $("#new-person-button").click(function () {
-                    window.location = '@Url.Action("Index","Person")';
-                });
+            $(document).ready(function () {                
                 $("#search-person-button").click(function () {
                     searchPersons();
                 });

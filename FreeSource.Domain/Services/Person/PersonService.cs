@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FreeSource.Common.Domain.Person;
 using FreeSource.Common.Models.Authorization;
 using FreeSource.Common.Models.Customer;
+using FreeSource.Common.Models.Person;
 using FreeSource.Domain.Repository.Person;
 
 namespace FreeSource.Domain.Services.Person
@@ -34,6 +35,11 @@ namespace FreeSource.Domain.Services.Person
         public Common.Models.Person.Person GetPerson(int personId)
         {
             return _personRepository.GetPerson(personId);
+        }
+
+        public IList<PersonRole> GetAllPersonRoles()
+        {
+            return _personRepository.GetAllPersonRoles();
         }
     }
 }

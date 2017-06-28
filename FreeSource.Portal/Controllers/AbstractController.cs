@@ -12,6 +12,9 @@ namespace FreeSource.Portal.Controllers
         {
             get
             {
+                //iniciado na request
+                if (_loggedUser != null) return _loggedUser;
+
                 if (Session["LogedUser"] == null)
                 {
                     if (_loggedUser != null) return _loggedUser;
@@ -20,7 +23,7 @@ namespace FreeSource.Portal.Controllers
                     _loggedUser = _authorizationApplication.FindByToken(User.Identity.Name);
                     if (_loggedUser == null)
                     {
-                        RedirectToAction("Login", "Account", null);
+                        RedirectToAction("Login", "Account");
                     }
 
                     Session["LogedUser"] = _loggedUser;
@@ -40,6 +43,30 @@ namespace FreeSource.Portal.Controllers
             _authorizationApplication = authorizationApplication;
 
         }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (_loggedUser != null) return;
+            if (Session["LogedUser"] == null)
+            {
+                _loggedUser = _authorizationApplication.FindByToken(User.Identity.Name);
+                if (_loggedUser == null)
+                {
+                    if (filterContext.HttpContext.Request.IsAjaxRequest())
+                    {
+                        filterContext.HttpContext.Response.StatusCode = 403;
+                        filterContext.Result =
+                            new JsonResult {Data = "LogOut", JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+                    }
+                    else
+                        filterContext.Result = RedirectToAction("Login", "Account");
+                }               
+            }
+            else
+            {
+                _loggedUser = Session["LogedUser"] as User;
+            }
+        } 
     }
 }
 
